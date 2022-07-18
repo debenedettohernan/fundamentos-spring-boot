@@ -49,18 +49,40 @@ public class FundamentosApplication implements CommandLineRunner {
 	}
 
 	private void getInformationJpqlFromUser(){
-		LOGGER.info("aca esta el user del mail: " +
-				userRepository.findByUserEmail("john@domain.com")
-						.orElseThrow(() -> new RuntimeException("no se encontro ese mail") ));
-		userRepository.findAndSort("ar", Sort.by("id")
-				.descending())
-				.stream()
-				.forEach(user-> LOGGER.info("usuariocon metodo sort" + user));
+//		LOGGER.info("aca esta el user del mail: " +
+//				userRepository.findByUserEmail("john@domain.com")
+//						.orElseThrow(() -> new RuntimeException("no se encontro ese mail") ));
+//		userRepository.findAndSort("john", Sort.by("id")
+//				.descending())
+//				.forEach(user-> LOGGER.info("usuario con metodo sort" + user));
+//		userRepository.findByName("John")
+//				.forEach(user -> LOGGER.info("usuario con query method" + user));
+//		LOGGER.info("usuario con query method findByEmailAndName " + userRepository.findByEmailAndName("enrique@domain.com", "Enrique")
+//				.orElseThrow(() -> new RuntimeException("Usuario no encontrado")));
+//
+//		userRepository.findByNameLike("%u%") /* % % (se utiliza para hacer una especificacion en la busqueda */
+//				.forEach(user ->LOGGER.info("usuario con findByNameLike " + user));
+//
+//		userRepository.findByNameOrEmail("John", null)
+//				.stream()
+//				.forEach(user ->LOGGER.info("usuario con findByNameOrEmail " + user));
+//		userRepository.findByBirthDateBetween(LocalDate.of(2021,3,1), LocalDate.of(2021,5,5))
+//				.stream()
+//				.forEach(user -> LOGGER.info("Usuarios entre estas fechas " + user));
+//
+//		userRepository.findAllOrderByIdDesc("%user%")
+//				.stream()
+//				.forEach(user -> LOGGER.info("Lista de users descendiente" + user));
+
+		LOGGER.info("El nombre a partir del named parameter es: " + userRepository.getAllByBirthDateAndEmail(LocalDate.of(2021, 9, 8),
+						"daniela@domain.com")
+				.orElseThrow(() -> new RuntimeException("no se encuentra el usuario con ese named parameter")));
 	}
+
 
 	private void saveUserSinDataBase(){
 		User user1 = new User("John", "john@domain.com", LocalDate.of(2021, 3, 13));
-		User user2 = new User("Marco", "marco@domain.com", LocalDate.of(2021, 12, 8));
+		User user2 = new User("John", "marco@domain.com", LocalDate.of(2021, 12, 8));
 		User user3 = new User("Daniela", "daniela@domain.com", LocalDate.of(2021, 9, 8));
 		User user4 = new User("Marisol", "marisol@domain.com", LocalDate.of(2021, 6, 18));
 		User user5 = new User("Karen", "karen@domain.com", LocalDate.of(2021, 1, 1));

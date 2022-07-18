@@ -26,7 +26,7 @@ public class User {
     @Column(length = 50)
     private String email;
 
-    private LocalDate cumpleanios;
+    private LocalDate birthDate;
 
     public User() {
     }
@@ -36,10 +36,10 @@ public class User {
         this.email = email;
     }
 
-    public User(String name, String email, LocalDate cumpleanios) {
+    public User(String name, String email, LocalDate birthDate) {
         this.name = name;
         this.email = email;
-        this.cumpleanios = cumpleanios;
+        this.birthDate = birthDate;
     }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -53,7 +53,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", Cumpleaños=" + cumpleanios +
+                ", Cumpleaños=" + birthDate +
                 ", posts=" + posts +
                 '}';
     }
