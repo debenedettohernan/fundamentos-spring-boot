@@ -23,7 +23,7 @@ public class User {
 
     @Column(length = 50)
     private String name;
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String email;
 
     private LocalDate birthDate;
@@ -45,6 +45,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Post> posts = new ArrayList<>();
+
+    public User(Long id) {
+        this.id = id;
+    }
 
 
     @Override
